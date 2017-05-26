@@ -48,9 +48,9 @@ namespace FLLB.Controllers
 
                 if (repo.AddUnsubscritionByPatient(model.ProId, model.UnsubscriptionReasonId, model.EmailPro))
                     return View("UnsubscribeOK");
-              
+                else
+                    ModelState.AddModelError("EmailPro", "This Email is not in file");
             }
-            ModelState.AddModelError("EmailPro", "This Email is not in file");
             model.AvailablesReasons = repo.GetUnsubscribeReasons();
             return View(model);
           
