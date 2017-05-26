@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="FLBAdminModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ShortenURLs">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ShortenURL" Type="varchar" MaxLength="10" />
+          <Property Name="URL" Type="varchar" MaxLength="250" />
+          <Property Name="MessageID" Type="int" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="UnsubscribeReasons">
+          <Key>
+            <PropertyRef Name="UnsubscribeReasonID" />
+          </Key>
+          <Property Name="UnsubscribeReasonID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UnsubscribeReasonName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Unsubscriptions">
+          <Key>
+            <PropertyRef Name="UnsubcriptionID" />
+          </Key>
+          <Property Name="UnsubcriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProID" Type="int" />
+          <Property Name="UnsubscribeOn" Type="smalldatetime" />
+          <Property Name="UnsubcriptionReason" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <Association Name="FK_Unsubscriptions_UnsubscribeReasons">
+          <End Role="UnsubscribeReasons" Type="Self.UnsubscribeReasons" Multiplicity="0..1" />
+          <End Role="Unsubscriptions" Type="Self.Unsubscriptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnsubscribeReasons">
+              <PropertyRef Name="UnsubscribeReasonID" />
+            </Principal>
+            <Dependent Role="Unsubscriptions">
+              <PropertyRef Name="UnsubcriptionReason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FLBAdminModelStoreContainer">
+          <EntitySet Name="ShortenURLs" EntityType="Self.ShortenURLs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UnsubscribeReasons" EntityType="Self.UnsubscribeReasons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Unsubscriptions" EntityType="Self.Unsubscriptions" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Unsubscriptions_UnsubscribeReasons" Association="Self.FK_Unsubscriptions_UnsubscribeReasons">
+            <End Role="UnsubscribeReasons" EntitySet="UnsubscribeReasons" />
+            <End Role="Unsubscriptions" EntitySet="Unsubscriptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FLBAdminModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ShortenURL">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ShortenURL1" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="MessageID" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="UnsubscribeReason">
+          <Key>
+            <PropertyRef Name="UnsubscribeReasonID" />
+          </Key>
+          <Property Name="UnsubscribeReasonID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UnsubscribeReasonName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Unsubscriptions" Relationship="Self.FK_Unsubscriptions_UnsubscribeReasons" FromRole="UnsubscribeReasons" ToRole="Unsubscriptions" />
+        </EntityType>
+        <EntityType Name="Unsubscription">
+          <Key>
+            <PropertyRef Name="UnsubcriptionID" />
+          </Key>
+          <Property Name="UnsubcriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProID" Type="Int32" />
+          <Property Name="UnsubscribeOn" Type="DateTime" Precision="0" />
+          <Property Name="UnsubcriptionReason" Type="Int32" />
+          <NavigationProperty Name="UnsubscribeReason" Relationship="Self.FK_Unsubscriptions_UnsubscribeReasons" FromRole="Unsubscriptions" ToRole="UnsubscribeReasons" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_Unsubscriptions_UnsubscribeReasons">
+          <End Role="UnsubscribeReasons" Type="Self.UnsubscribeReason" Multiplicity="0..1" />
+          <End Role="Unsubscriptions" Type="Self.Unsubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UnsubscribeReasons">
+              <PropertyRef Name="UnsubscribeReasonID" />
+            </Principal>
+            <Dependent Role="Unsubscriptions">
+              <PropertyRef Name="UnsubcriptionReason" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FLBAdminDevEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ShortenURLs" EntityType="Self.ShortenURL" />
+          <EntitySet Name="UnsubscribeReasons" EntityType="Self.UnsubscribeReason" />
+          <EntitySet Name="Unsubscriptions" EntityType="Self.Unsubscription" />
+          <AssociationSet Name="FK_Unsubscriptions_UnsubscribeReasons" Association="Self.FK_Unsubscriptions_UnsubscribeReasons">
+            <End Role="UnsubscribeReasons" EntitySet="UnsubscribeReasons" />
+            <End Role="Unsubscriptions" EntitySet="Unsubscriptions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FLBAdminModelStoreContainer" CdmEntityContainer="FLBAdminDevEntities">
+          <EntitySetMapping Name="ShortenURLs">
+            <EntityTypeMapping TypeName="FLBAdminModel.ShortenURL">
+              <MappingFragment StoreEntitySet="ShortenURLs">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ShortenURL1" ColumnName="ShortenURL" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="MessageID" ColumnName="MessageID" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UnsubscribeReasons">
+            <EntityTypeMapping TypeName="FLBAdminModel.UnsubscribeReason">
+              <MappingFragment StoreEntitySet="UnsubscribeReasons">
+                <ScalarProperty Name="UnsubscribeReasonID" ColumnName="UnsubscribeReasonID" />
+                <ScalarProperty Name="UnsubscribeReasonName" ColumnName="UnsubscribeReasonName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unsubscriptions">
+            <EntityTypeMapping TypeName="FLBAdminModel.Unsubscription">
+              <MappingFragment StoreEntitySet="Unsubscriptions">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UnsubcriptionID" ColumnName="UnsubcriptionID" />
+                <ScalarProperty Name="ProID" ColumnName="ProID" />
+                <ScalarProperty Name="UnsubscribeOn" ColumnName="UnsubscribeOn" />
+                <ScalarProperty Name="UnsubcriptionReason" ColumnName="UnsubcriptionReason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

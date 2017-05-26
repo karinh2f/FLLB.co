@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="KL_LawFinderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Pros">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Suffix" Type="nvarchar" MaxLength="10" />
+          <Property Name="ImportId" Type="int" Nullable="false" />
+          <Property Name="BarNumber" Type="int" Nullable="false" />
+          <Property Name="Url" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Description" Type="text" />
+          <Property Name="FreeConsultation" Type="bit" Nullable="false" />
+          <Property Name="CreditCard" Type="bit" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="OfficePhoneNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="CellPhone" Type="nvarchar" MaxLength="10" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="10" />
+          <Property Name="WebSite" Type="varchar" MaxLength="250" />
+          <Property Name="Facebook" Type="varchar" MaxLength="250" />
+          <Property Name="Twitter" Type="varchar" MaxLength="250" />
+          <Property Name="GooglePlus" Type="varchar" MaxLength="250" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Admitted" Type="datetime" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Code" Type="varchar" MaxLength="6" />
+          <Property Name="LawSchoolId" Type="bigint" />
+          <Property Name="GraduatedYear" Type="int" />
+          <Property Name="Firm" Type="nvarchar" MaxLength="250" />
+          <Property Name="FirmPositionId" Type="bigint" />
+          <Property Name="PlanId" Type="bigint" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityContainer Name="KL_LawFinderModelStoreContainer">
+          <EntitySet Name="Pros" EntityType="Self.Pros" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KL_LawFinderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Pro">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Suffix" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ImportId" Type="Int32" Nullable="false" />
+          <Property Name="BarNumber" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FreeConsultation" Type="Boolean" Nullable="false" />
+          <Property Name="CreditCard" Type="Boolean" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OfficePhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CellPhone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="WebSite" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Twitter" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="GooglePlus" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="Admitted" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Name="LawSchoolId" Type="Int64" />
+          <Property Name="GraduatedYear" Type="Int32" />
+          <Property Name="Firm" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="FirmPositionId" Type="Int64" />
+          <Property Name="PlanId" Type="Int64" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="KL_LawFinderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Pros" EntityType="Self.Pro" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KL_LawFinderModelStoreContainer" CdmEntityContainer="KL_LawFinderEntities">
+          <EntitySetMapping Name="Pros">
+            <EntityTypeMapping TypeName="KL_LawFinderModel.Pro">
+              <MappingFragment StoreEntitySet="Pros">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="Suffix" ColumnName="Suffix" />
+                <ScalarProperty Name="ImportId" ColumnName="ImportId" />
+                <ScalarProperty Name="BarNumber" ColumnName="BarNumber" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FreeConsultation" ColumnName="FreeConsultation" />
+                <ScalarProperty Name="CreditCard" ColumnName="CreditCard" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="OfficePhoneNumber" ColumnName="OfficePhoneNumber" />
+                <ScalarProperty Name="CellPhone" ColumnName="CellPhone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="WebSite" ColumnName="WebSite" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="GooglePlus" ColumnName="GooglePlus" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Admitted" ColumnName="Admitted" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="LawSchoolId" ColumnName="LawSchoolId" />
+                <ScalarProperty Name="GraduatedYear" ColumnName="GraduatedYear" />
+                <ScalarProperty Name="Firm" ColumnName="Firm" />
+                <ScalarProperty Name="FirmPositionId" ColumnName="FirmPositionId" />
+                <ScalarProperty Name="PlanId" ColumnName="PlanId" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,63 @@
+﻿@model FLLB.Models.UnsubscribeVM
+
+
+@{
+
+    ViewBag.Title = "Unsubscribe - Florida Lawyer Bureau";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+
+
+<body>
+        <div class="container content s-results" style="max-width:900px;">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <div class="panel" style="border:solid 1px #989494; padding: 20px;">
+                        <div class="panel-heading overflow-h" style="padding-bottom: 20px;">
+                            <div class="row">
+                                <img src="~/Content/img/main-logo.png" />
+                            </div>
+                            <div class="row">
+                                <strong>You have successfully unsubscribed from all future email communications.</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+    <div class="container body-content">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - FloridaLawyerBureau.com
+        </footer>
+</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script>
+        $(document).ready(function () {
+            $('input:radio').change(function () {
+                var valuereasons = $(this).val();
+                //alert($(this).val());
+                $("#UnsubscriptionReasonId").val(valuereasons);
+            });
+        });
+    </script>
+
+</body>
+
+</html>
+
+
+
+
